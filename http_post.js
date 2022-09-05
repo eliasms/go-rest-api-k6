@@ -1,45 +1,57 @@
-import http from 'k6/http';
-import { check } from 'k6';
-import { options, urlbase, apitoken } from "./common.js";
+import http from "k6/http";
+import {
+	check
+} from "k6";
+import {
+	options,
+	urlbase,
+	apitoken
+} from "./common.js";
 
-export { options };
+export {
+	options
+};
 
 import {
-  randomString,
-  randomItem
-} from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
+	randomString,
+	randomItem
+} from "https://jslib.k6.io/k6-utils/1.2.0/index.js";
 
 var idList = [];
 
-export default function () {
-    const params = {
-        headers: {'Authorization': `Bearer ${apitoken}`,
-                  'Content-Type': 'application/json'},
-    };
+export default function() {
+	const params = {
+		headers: {
+			"Authorization": `Bearer ${apitoken}`,
+			"Content-Type": "application/json"
+		},
+	};
 
-    const payload = {
-    name: randomItem(['Maximus', 'Minimus']),
-    gender: randomItem(['Male', 'Female']),
-    email: `user_${randomString(10)}@example.com`,
-    status: 'Active'
-    };
+	const payload = {
+		name: randomItem(["Maximus", "Minimus"]),
+		gender: randomItem(["Male", "Female"]),
+		email: `user_${randomString(10)}@example.com`,
+		status: "Active"
+	};
 
-    const res = http.post(
-      `${urlbase}/users`,
-      JSON.stringify(payload),
-      params
-      );
-    
-    console.log(res.json());
+	const res = http.post(
+		`${urlbase}/users`,
+		JSON.stringify(payload),
+		params
+	);
 
-    var jsonData = JSON.parse(res.body);
+	console.log(res.json());
 
-    var id = jsonData.id;
+	var jsonData = JSON.parse(res.body);
 
-    idList.push(id);
+	var id = jsonData.id;
 
-    console.log("Id List:", idList);
+	idList.push(id);
 
-    check(res, { 'status was 201': (r) => r.status == 201 });
-  
+	console.log("Id List:", idList);
+
+	check(res, {
+		"status was 201": (r) => r.status == 201
+	});
+
 }
