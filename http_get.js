@@ -1,17 +1,8 @@
 import http from "k6/http";
-import {
-	check,
-	sleep
-} from "k6";
-import {
-	options,
-	urlbase,
-	apitoken
-} from "./common.js";
+import { check,	sleep } from "k6";
+import { options, urlbase, apitoken } from "./common.js";
 
-export {
-	options
-};
+export { options };
 
 export default function() {
 	const params = {

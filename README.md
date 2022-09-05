@@ -23,6 +23,14 @@ Using BASH
 
     API_TOKEN={your_api_token_here}
 
+Using MAC with M1 open `.zprofile` and save values:
+
+    export API_TOKEN="{your_api_token_here}"
+
+Using MAC with Intel open `.bash_profile` and save values:
+
+    export API_TOKEN="{your_api_token_here}"
+
 ## Run the test execution script
 Using any terminal
 
