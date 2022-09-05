@@ -36,14 +36,6 @@ export default function () {
 
     var id = jsonData.id;
 
-    //if (localStorage.myIdList){
-    //  idList = JSON.parse(localStorage('myIdList'));
-    //}
-
-    //let newId = jsonData.id;
-    //idList.push(newId);
-    //localStorage.myIdList = JSON.stringify(idList);
-    
     idList.push(id);
 
     console.log("Id List:", idList);
